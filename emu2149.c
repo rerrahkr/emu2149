@@ -51,14 +51,21 @@ internal_refresh (PSG * psg)
   {
     psg->base_incr = 1 << GETA_BITS;
     psg->realstep = (uint32_t) ((1 << 31) / psg->rate);
-    psg->psgstep = (uint32_t) ((1 << 31) / (psg->clk / 16));
+    psg->psgstep = (uint32_t) ((1 << 31) / (psg->clk / 8));
     psg->psgtime = 0;
   }
   else
   {
     psg->base_incr =
-      (uint32_t) ((double) psg->clk * (1 << GETA_BITS) / (16 * psg->rate));
+      (uint32_t) ((double) psg->clk * (1 << GETA_BITS) / (8 * psg->rate));
   }
+}
+
+void
+PSG_set_clock(PSG * psg, uint32_t c)
+{
+  psg->clk = c;
+  internal_refresh(psg);
 }
 
 void

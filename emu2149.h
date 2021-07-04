@@ -68,6 +68,7 @@ extern "C"
   } PSG;
 
   void PSG_set_quality (PSG * psg, uint32_t q);
+  void PSG_set_clock(PSG * psg, uint32_t c);
   void PSG_set_rate (PSG * psg, uint32_t r);
   PSG *PSG_new (uint32_t clk, uint32_t rate);
   void PSG_reset (PSG *);
